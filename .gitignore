@@ -1,0 +1,55 @@
+# Ignore Python cache files
+__pycache__/
+
+# Ignore environment-specific files
+.env
+.env.*
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Flask-related files
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyc
+
+# Ignore Virtual Environment
+venv/
+
+# Ignore VSCode specific files
+.vscode/
+*.code-workspace
+
+# Ignore any editor-specific temporary files or directories
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# Ignore Flask auto-generated files
+instance/
+
+# Ignore logs and other generated files
+logs/
+*.log
+*.log.*
+*.log-*
+
+# Ignore SQLite database files
+*.sqlite3
+*.db
+
+# Ignore pipenv files
+Pipfile
+Pipfile.lock
+
+# Ignore any local configuration specific to your machine
+.local/
