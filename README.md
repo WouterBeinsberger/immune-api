@@ -23,6 +23,10 @@ To install the python packages needed, navigate to the project root folder and u
 pip install -r requirements.txt
 ```
 
+Add a `.env` file to the project root folder and fill in the following:
+```
+TOKEN=
+```
 <p align="right">[<a href="#readme-top">back to top</a>]</p>
 
 ## Usage
