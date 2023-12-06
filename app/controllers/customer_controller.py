@@ -48,6 +48,9 @@ def create_customer():
 def update_customer(customer_id):
     authorize()  # Check authorization before processing
     data = request.get_json()
+    # Remove the 'id' field from the request data if present
+    if 'id' in data:
+        del data['id']
     with open('app/data/customers.json', 'r+') as file:
         customers = json.load(file)
         for customer in customers:
@@ -62,6 +65,9 @@ def update_customer(customer_id):
 def patch_customer(customer_id):
     authorize()  # Check authorization before processing
     data = request.get_json()
+    # Remove the 'id' field from the request data if present
+    if 'id' in data:
+        del data['id']
     with open('app/data/customers.json', 'r+') as file:
         customers = json.load(file)
         for customer in customers:
