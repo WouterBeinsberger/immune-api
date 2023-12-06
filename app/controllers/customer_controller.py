@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, abort
 from app.auth import authorize
 from app.models.customer import Customer
 import json
+import uuid
 
 customer_bp = Blueprint("customer", __name__)
 
@@ -27,7 +28,7 @@ def create_customer():
     authorize()  # Check authorization before processing
     data = request.get_json()
     new_customer = {
-        "id": len(customers) + 1,  # Assuming IDs start from 1 and increment
+        "id": uuid.uuid4().int,
         "email": data.get("email"),
         "firstname": data.get("firstname"),
         "lastname": data.get("lastname"),
