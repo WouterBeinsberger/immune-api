@@ -88,7 +88,7 @@ def delete_customer(customer_id):
         for idx, customer in enumerate(customers):
             if customer.get("id") == customer_id:
                 del customers[idx]
-                file.seek(0)
-                json.dump(customers, file, indent=4)
-                return jsonify({"message": "Customer deleted"}), 200
-        return jsonify({"error": "Customer not found"}), 404
+                with open('app/data/customers.json', 'w') as file:
+                    json.dump(customers, file, indent=4)
+                return jsonify({"message": f"Customer with ID {customer_id} deleted"}), 200
+        return jsonify({"error": f"Customer with ID {customer_id} not found"}), 404
