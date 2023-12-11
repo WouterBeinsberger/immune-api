@@ -31,10 +31,12 @@ TOKEN=
 
 ## Usage
 
-To start the backend server use the following command:
+To start the api use the following command:
 ```
 python main.py
 ```
+
+**IMPORTANT:** if at any point the api stops working then you can reset the api. The application has a build in reset. If you close the application by using `ctrl+c` in the terminal the data will reset.
 
 <p align="right">[<a href="#readme-top">back to top</a>]</p>
 
@@ -76,6 +78,25 @@ python main.py
 - **Endpoint:** `/customer`
 - **Request Headers:** Authorization: <generated_token>
 - **Request:** Send JSON payload containing customer details.
+- **Request body:**
+```
+{
+    "billing": {
+        "city": "Anytown",
+        "country": "USA",
+        "email": "john@example.com",
+        "firstname": "John",
+        "lastname": "Doe",
+        "street": "123 Main St",
+        "zipcode": "12345"
+    },
+    "email": "john@example.com",
+    "firstname": "wouter",
+    "lastname": "beinsberger",
+    "sendOptInMail": false
+}
+```
+*Note: ID of the customer is automatically generated upon creation*
 - **Response:** Returns a success message with the newly created customer's ID.
 
 ### Update Customer
@@ -83,7 +104,26 @@ python main.py
 - **HTTP Method:** PUT
 - **Endpoint:** `/customer/<customer_id>`
 - **Request Headers:** Authorization: <generated_token>
-- **Request:** `<customer_id>` is a numerical value representing the customer's ID. Send JSON payload containing updated customer details. The 'id' field cannot be updated.
+- **Request:** `<customer_id>` is a numerical value representing the customer's ID. Send JSON payload containing updated customer details.
+- **Request body:**
+```
+{
+    "billing": {
+        "city": "Anytown",
+        "country": "USA",
+        "email": "john@example.com",
+        "firstname": "John",
+        "lastname": "Doe",
+        "street": "123 Main St",
+        "zipcode": "12345"
+    },
+    "email": "john@example.com",
+    "firstname": "wouter",
+    "lastname": "beinsberger",
+    "sendOptInMail": false
+}
+```
+*Note: The 'id' field cannot be updated.*
 - **Response:** Returns a success message upon updating the customer's information.
 
 ### Partially Update Customer
@@ -92,6 +132,15 @@ python main.py
 - **Endpoint:** `/customer/<customer_id>`
 - **Request Headers:** Authorization: <generated_token>
 - **Request:** `<customer_id>` is a numerical value representing the customer's ID. Send JSON payload containing the fields to be updated. The 'id' field cannot be updated.
+- **Request body:**
+```
+{
+    "sendOptInMail": true,
+    "lastname": "Test"
+}
+```
+*Note: The 'id' field cannot be updated.*
+**DO NOT** *update billing, it will break the api.*
 - **Response:** Returns a success message upon partially updating the customer's information.
 
 ### Delete Customer
