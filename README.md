@@ -60,7 +60,12 @@ python main.py
 - **Description:** Get all customers' information.
 - **HTTP Method:** GET
 - **Endpoint:** `/customers`
-- **Request Headers:** Authorization: <generated_token>
+- **Request Headers:** 
+```
+Content-Type: application/json
+Accept: application/json
+Authorization: <generated_token>
+```
 - **Request:** No request parameters needed.
 - **Response:** Returns a list of all customers' data.
 
@@ -68,7 +73,12 @@ python main.py
 - **Description:** Get a specific customer's information by ID.
 - **HTTP Method:** GET
 - **Endpoint:** `/customer/<customer_id>`
-- **Request Headers:** Authorization: <generated_token>
+- **Request Headers:** 
+```
+Content-Type: application/json
+Accept: application/json
+Authorization: <generated_token>
+```
 - **Request:** `<customer_id>` is a numerical value representing the customer's ID.
 - **Response:** Returns the customer's data corresponding to the provided ID.
 
@@ -76,7 +86,12 @@ python main.py
 - **Description:** Create a new customer.
 - **HTTP Method:** POST
 - **Endpoint:** `/customer`
-- **Request Headers:** Authorization: <generated_token>
+- **Request Headers:** 
+```
+Content-Type: application/json
+Accept: application/json
+Authorization: <generated_token>
+```
 - **Request:** Send JSON payload containing customer details.
 - **Request body:**
 ```
@@ -103,7 +118,12 @@ python main.py
 - **Description:** Update customer information.
 - **HTTP Method:** PUT
 - **Endpoint:** `/customer/<customer_id>`
-- **Request Headers:** Authorization: <generated_token>
+- **Request Headers:** 
+```
+Content-Type: application/json
+Accept: application/json
+Authorization: <generated_token>
+```
 - **Request:** `<customer_id>` is a numerical value representing the customer's ID. Send JSON payload containing updated customer details.
 - **Request body:**
 ```
@@ -130,7 +150,12 @@ python main.py
 - **Description:** Partially update customer information.
 - **HTTP Method:** PATCH
 - **Endpoint:** `/customer/<customer_id>`
-- **Request Headers:** Authorization: <generated_token>
+- **Request Headers:** 
+```
+Content-Type: application/json
+Accept: application/json
+Authorization: <generated_token>
+```
 - **Request:** `<customer_id>` is a numerical value representing the customer's ID. Send JSON payload containing the fields to be updated. The 'id' field cannot be updated.
 - **Request body:**
 ```
@@ -147,7 +172,12 @@ python main.py
 - **Description:** Delete a specific customer by ID.
 - **HTTP Method:** DELETE
 - **Endpoint:** `/customer/<customer_id>`
-- **Request Headers:** Authorization: <generated_token>
+- **Request Headers:** 
+```
+Content-Type: application/json
+Accept: application/json
+Authorization: <generated_token>
+```
 - **Request:** `<customer_id>` is a numerical value representing the customer's ID.
 - **Response:** Returns a success message upon deleting the customer.
 
