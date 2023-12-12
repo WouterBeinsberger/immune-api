@@ -56,8 +56,8 @@ def update_customer(customer_id):
         for customer in customers:
             if customer.get("id") == customer_id:
                 customer.update(data)
-                file.seek(0)
-                json.dump(customers, file, indent=4)
+                with open('app/data/customers.json', 'w') as file:
+                    json.dump(customers, file, indent=4)
                 return jsonify(customer), 200
         return jsonify({"error": "Customer not found"}), 404
 
@@ -75,8 +75,8 @@ def patch_customer(customer_id):
                 for key, value in data.items():
                     if key in customer:
                         customer[key] = value
-                file.seek(0)
-                json.dump(customers, file, indent=4)
+                with open('app/data/customers.json', 'w') as file:
+                    json.dump(customers, file, indent=4)
                 return jsonify(customer), 200
         return jsonify({"error": "Customer not found"}), 404
 
