@@ -69,6 +69,8 @@ Authorization: <generated_token>
 - **Request:** No request parameters needed.
 - **Response:** Returns a list of all customers' data.
 
+---
+
 ### Get Customer by ID
 - **Description:** Get a specific customer's information by ID.
 - **HTTP Method:** GET
@@ -81,6 +83,8 @@ Authorization: <generated_token>
 ```
 - **Request:** `<customer_id>` is a numerical value representing the customer's ID.
 - **Response:** Returns the customer's data corresponding to the provided ID.
+
+---
 
 ### Create New Customer
 - **Description:** Create a new customer.
@@ -114,6 +118,8 @@ Authorization: <generated_token>
 *Note: ID of the customer is automatically generated upon creation*
 - **Response:** Returns a success message with the newly created customer's ID.
 
+---
+
 ### Update Customer
 - **Description:** Update customer information.
 - **HTTP Method:** PUT
@@ -146,6 +152,8 @@ Authorization: <generated_token>
 *Note: The 'id' field cannot be updated.*
 - **Response:** Returns a success message upon updating the customer's information.
 
+---
+
 ### Partially Update Customer
 - **Description:** Partially update customer information.
 - **HTTP Method:** PATCH
@@ -167,6 +175,8 @@ Authorization: <generated_token>
 *Note: The 'id' field cannot be updated.*
 **DO NOT** *update billing, it will break the api.*
 - **Response:** Returns a success message upon partially updating the customer's information.
+
+---
 
 ### Delete Customer
 - **Description:** Delete a specific customer by ID.
