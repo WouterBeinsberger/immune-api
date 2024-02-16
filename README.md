@@ -171,7 +171,6 @@ Authorization: <generated_token>
 }
 ```
 *Note: The 'id' field cannot be updated.*
-**DO NOT** *update billing, it will break the api.*
 - **Response:** Returns a success message upon partially updating the customer's information.
 
 ---
