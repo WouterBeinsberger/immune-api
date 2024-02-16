@@ -53,7 +53,7 @@ python main.py
 
 ## Customer Endpoints
 
-*Note: To access these endpoints, include the generated token in the header as follows: Authorization: <generated_token>*
+*Note: Some of the endpoints need authorization. To access these endpoints, include the generated token in the header as follows: Authorization: <generated_token>*
 
 
 ### Get All Customers
@@ -64,7 +64,6 @@ python main.py
 ```
 Content-Type: application/json
 Accept: application/json
-Authorization: <generated_token>
 ```
 - **Request:** No request parameters needed.
 - **Response:** Returns a list of all customers' data.
@@ -79,7 +78,6 @@ Authorization: <generated_token>
 ```
 Content-Type: application/json
 Accept: application/json
-Authorization: <generated_token>
 ```
 - **Request:** `<customer_id>` is a numerical value representing the customer's ID.
 - **Response:** Returns the customer's data corresponding to the provided ID.

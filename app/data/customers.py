@@ -1,10 +1,10 @@
-[
+CUSTOMERS = [
     {
-        "id": 227598391978820381858517083938713624849,
+        "id": 227598,
         "email": "john@example.com",
         "firstname": "John",
         "lastname": "Doe",
-        "sendOptInMail": true,
+        "sendOptInMail": True,
         "billing": {
             "email": "john@example.com",
             "firstname": "John",
@@ -16,11 +16,11 @@
         }
     },
     {
-        "id": 176319425343383896387868688047542179195,
+        "id": 176319,
         "email": "jane@example.com",
         "firstname": "Jane",
         "lastname": "Smith",
-        "sendOptInMail": false,
+        "sendOptInMail": False,
         "billing": {
             "email": "jane@example.com",
             "firstname": "Jane",
@@ -32,11 +32,11 @@
         }
     },
     {
-        "id": 218146183267166536775647651947991300383,
+        "id": 218146,
         "email": "alice@example.com",
         "firstname": "Alice",
         "lastname": "Johnson",
-        "sendOptInMail": true,
+        "sendOptInMail": True,
         "billing": {
             "email": "alice@example.com",
             "firstname": "Alice",
@@ -48,11 +48,11 @@
         }
     },
     {
-        "id": 194249647119320237497786198490366872578,
+        "id": 194249,
         "email": "bob@example.com",
         "firstname": "Bob",
         "lastname": "Brown",
-        "sendOptInMail": false,
+        "sendOptInMail": False,
         "billing": {
             "email": "bob@example.com",
             "firstname": "Bob",
@@ -64,11 +64,11 @@
         }
     },
     {
-        "id": 202499634635751893267273565020053460253,
+        "id": 202499,
         "email": "carol@example.com",
         "firstname": "Carol",
         "lastname": "Davis",
-        "sendOptInMail": true,
+        "sendOptInMail": True,
         "billing": {
             "email": "carol@example.com",
             "firstname": "Carol",

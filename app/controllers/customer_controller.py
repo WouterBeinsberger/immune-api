@@ -1,34 +1,31 @@
-from flask import Blueprint, jsonify, request, abort
+from flask import Blueprint, jsonify, request
 from app.auth import authorize
-from app.models.customer import Customer
+from app.models.customers import Customers
 import json
 import uuid
 
 customer_bp = Blueprint("customer", __name__)
+customers = Customers()
 
 @customer_bp.route("/customers", methods=["GET"])
 def get_all_customers():
-    authorize()  # Check authorization before processing
-    with open('app/data/customers.json') as file:
-        customers = json.load(file)
-    return jsonify(customers), 200
+    return customers.all_customers(), 200
 
 @customer_bp.route("/customer/<int:customer_id>", methods=["GET"])
 def get_customer(customer_id):
-    authorize()  # Check authorization before processing
-    with open('app/data/customers.json') as file:
-        customers = json.load(file)
-        for customer in customers:
-            if customer.get("id") == customer_id:
-                return jsonify(customer), 200
-        return jsonify({"error": "Customer not found"}), 404
+    customer = customers.get_customer_by_id(customer_id)
+    if customer:
+        return customer, 200
+    else:
+        return jsonify({"error": f"Customer with ID {customer_id} not found"}), 404
+
 
 @customer_bp.route("/customer", methods=["POST"])
 def create_customer():
     authorize()  # Check authorization before processing
     data = request.get_json()
     new_customer = {
-        "id": uuid.uuid4().int,
+        "id": int(str(uuid.uuid4().int)[0:6]),
         "email": data.get("email"),
         "firstname": data.get("firstname"),
         "lastname": data.get("lastname"),
@@ -36,13 +33,9 @@ def create_customer():
         "billing": data.get("billing")
     }
 
-    with open('app/data/customers.json', 'r+') as file:
-        customers = json.load(file)
-        customers.append(new_customer)
-        file.seek(0)
-        json.dump(customers, file, indent=4)
-    
-    return jsonify(new_customer), 201
+    customers.add_customer(new_customer)
+    return jsonify({"success": f"Customer {new_customer['id']} added"}), 201
+
 
 @customer_bp.route("/customer/<int:customer_id>", methods=["PUT"])
 def update_customer(customer_id):
@@ -51,15 +44,13 @@ def update_customer(customer_id):
     # Remove the 'id' field from the request data if present
     if 'id' in data:
         del data['id']
-    with open('app/data/customers.json', 'r+') as file:
-        customers = json.load(file)
-        for customer in customers:
-            if customer.get("id") == customer_id:
-                customer.update(data)
-                with open('app/data/customers.json', 'w') as file:
-                    json.dump(customers, file, indent=4)
-                return jsonify(customer), 200
-        return jsonify({"error": "Customer not found"}), 404
+    if customers.get_customer_by_id(customer_id):
+        customers.update_customer_by_id(customer_id, data)
+        return customers.get_customer_by_id(customer_id), 200
+    else:
+        return jsonify({"error": f"Customer with ID {customer_id} not found"}), 404
+        
+    
 
 @customer_bp.route("/customer/<int:customer_id>", methods=["PATCH"])
 def patch_customer(customer_id):
@@ -68,27 +59,18 @@ def patch_customer(customer_id):
     # Remove the 'id' field from the request data if present
     if 'id' in data:
         del data['id']
-    with open('app/data/customers.json', 'r+') as file:
-        customers = json.load(file)
-        for customer in customers:
-            if customer.get("id") == customer_id:
-                for key, value in data.items():
-                    if key in customer:
-                        customer[key] = value
-                with open('app/data/customers.json', 'w') as file:
-                    json.dump(customers, file, indent=4)
-                return jsonify(customer), 200
-        return jsonify({"error": "Customer not found"}), 404
+    if customers.get_customer_by_id(customer_id):
+        customers.update_customer_by_id(customer_id, data)
+        return customers.get_customer_by_id(customer_id), 200
+    else:
+        return jsonify({"error": f"Customer with ID {customer_id} not found"}), 404
 
 @customer_bp.route("/customer/<int:customer_id>", methods=["DELETE"])
 def delete_customer(customer_id):
     authorize()  # Check authorization before processing
-    with open('app/data/customers.json', 'r+') as file:
-        customers = json.load(file)
-        for idx, customer in enumerate(customers):
-            if customer.get("id") == customer_id:
-                del customers[idx]
-                with open('app/data/customers.json', 'w') as file:
-                    json.dump(customers, file, indent=4)
-                return jsonify({"message": f"Customer with ID {customer_id} deleted"}), 200
+    customer = customers.get_customer_by_id(customer_id)
+    if customer:
+        customers.delete_customer_by_id(customer_id)
+        return jsonify({"message": f"Customer with ID {customer_id} deleted"}), 200
+    else:
         return jsonify({"error": f"Customer with ID {customer_id} not found"}), 404

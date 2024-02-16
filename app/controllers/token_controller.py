@@ -1,7 +1,5 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
 from app.auth import generate_token
-# from app.config import valid_token
-# from app.utils.auth_utils import valid_token
 
 token_bp = Blueprint("token", __name__)
 
