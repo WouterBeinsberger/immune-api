@@ -84,6 +84,21 @@ Accept: application/json
 
 ---
 
+### Get Customer by query
+- **Description:** Get a specific customer's by using a query.
+- **HTTP Method:** GET
+- **Endpoint:** `/customer`
+- **Request Parameters:** `email, firstname, lastname, sendOptInMail, id`
+- **Request Headers:** 
+```
+Content-Type: application/json
+Accept: application/json
+```
+- **Request:** `<customer_id>` is a numerical value representing the query.
+- **Response:** Returns the customer's data corresponding to the query.
+
+---
+
 ### Create New Customer
 - **Description:** Create a new customer.
 - **HTTP Method:** POST

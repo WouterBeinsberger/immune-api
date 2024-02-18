@@ -29,6 +29,15 @@ class Customers:
                 self._recursive_update(customer, new_data)
                 return True
         return False
+    
+    def filter_customers(self, filter_criteria):
+        filtered_customers = []
+        for customer in self.data:
+            # Convert all values to strings before checking against filter_criteria
+            customer_str = {k: str(v) for k, v in customer.items()}
+            if all(customer_str.get(key) == str(value) for key, value in filter_criteria.items()):
+                filtered_customers.append(customer)
+        return filtered_customers
 
     def _recursive_update(self, original, new_data):
         for key, value in new_data.items():

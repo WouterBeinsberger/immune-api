@@ -11,6 +11,16 @@ customers = Customers()
 def get_all_customers():
     return customers.all_customers(), 200
 
+@customer_bp.route("/customer", methods=["GET"])
+def get_customer_by_query():
+    args = request.args.to_dict()
+
+    customer = customers.filter_customers(args)
+    if customer:
+        return customer, 200
+    else:
+        return jsonify({"error": f"Customer with Query {args} not found"}), 404
+
 @customer_bp.route("/customer/<int:customer_id>", methods=["GET"])
 def get_customer(customer_id):
     customer = customers.get_customer_by_id(customer_id)
